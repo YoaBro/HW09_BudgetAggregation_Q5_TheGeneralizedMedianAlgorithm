@@ -82,11 +82,9 @@ def compute_budget(total_budget: float, citizen_votes: list[list[float]]) -> lis
     return [float(x) for x in final_budget]
 
 # Run example like required
-# Each citizen vote must be 100% on one subject in order to promise group fairness
 if __name__ == "__main__":
     print(compute_budget(100, [[100, 0, 0], [0, 0, 100]]))
 
-    # must be 100% on one subject
     print(compute_budget(30, [
         [30, 0, 0],
         [0, 30, 0],

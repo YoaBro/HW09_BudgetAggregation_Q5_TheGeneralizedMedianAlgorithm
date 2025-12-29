@@ -44,9 +44,7 @@ def compute_budget_efficient(total_budget: float, citizen_votes: List[List[float
     m = len(citizen_votes[0])
     for row in citizen_votes:
         if len(row) != m:
-            raise ValueError("All citizens must vote on the same number of subjects.")
-        # all citizens must vote 100% on one subject, and not split their vote between subjects
-                
+            raise ValueError("All citizens must vote on the same number of subjects.")                
 
     # Edge case: n=1 -> no phantoms. The algorithm is just the (single) citizen vector.
     # There is no t parameter that can change anything.
@@ -193,7 +191,6 @@ if __name__ == "__main__":
     print("Example 1:")
     print(compute_budget_efficient(100, [[100, 0, 0], [0, 0, 100]]))  # expected [50, 0, 50]
 
-    # not good: must be 100% on one subject לא טובבבבב
     print("\nExample 2:")
     print(compute_budget_efficient(30, [
         [6, 6, 6, 6, 0, 0, 6, 0, 0],
