@@ -1,0 +1,71 @@
+=== Example 1: Simple Binary Budget Aggregation ===
+Input:
+  budget = 100
+  valuation_matrix = [[100, 0, 0], [0, 0, 100]]
+  
+Explanation:
+  - Agent 1 values: Project 0 (100), Project 1 (0), Project 2 (0)
+  - Agent 2 values: Project 0 (0), Project 1 (0), Project 2 (100)
+  - Total budget: 100
+  
+Expected Output:
+  compute_budget(100, [[100, 0, 0], [0, 0, 100]])
+  
+Analysis:
+  - Agent 1 only cares about Project 0 with full value 100
+  - Agent 2 only cares about Project 2 with full value 100
+  - Since budget = 100, we can only fund one project completely
+  - Optimal allocation should balance utilities or maximize social welfare
+  - Possible solutions: 
+    * Fund Project 0 completely (satisfies Agent 1)
+    * Fund Project 2 completely (satisfies Agent 2)
+    * Split budget between projects based on fairness criteria
+
+=== Example 2: Complex Multi-Project Budget Aggregation ===
+Input:
+  budget = 30
+  valuation_matrix = [
+    [6, 6, 6, 6, 0, 0, 6, 0, 0],  # Agent 1
+    [0, 0, 6, 6, 6, 6, 0, 6, 0],  # Agent 2
+    [6, 6, 0, 0, 6, 6, 0, 0, 6],  # Agent 3
+  ]
+  
+Explanation:
+  - 3 agents, 9 projects
+  - Total budget: 30
+  - Each agent values different subsets of projects with value 6
+  
+Agent Preferences:
+  - Agent 1 values: Projects {0, 1, 2, 3, 6} with value 6 each
+  - Agent 2 values: Projects {2, 3, 4, 5, 7} with value 6 each
+  - Agent 3 values: Projects {0, 1, 4, 5, 8} with value 6 each
+  
+Expected Output:
+  compute_budget(30, [
+    [6, 6, 6, 6, 0, 0, 6, 0, 0],
+    [0, 0, 6, 6, 6, 6, 0, 6, 0],
+    [6, 6, 0, 0, 6, 6, 0, 0, 6],
+  ])
+  
+Analysis:
+  - Need to allocate 30 units across 9 projects
+  - Must maximize social welfare or ensure fairness
+  - Projects with overlap (valued by multiple agents):
+    * Project 0: Agents 1, 3
+    * Project 1: Agents 1, 3
+    * Project 2: Agents 1, 2
+    * Project 3: Agents 1, 2
+    * Project 4: Agents 2, 3
+    * Project 5: Agents 2, 3
+  - Projects valued by single agents:
+    * Project 6: Agent 1 only
+    * Project 7: Agent 2 only
+    * Project 8: Agent 3 only
+  
+Possible Allocation Strategies:
+  1. Equal allocation: 30/9 ≈ 3.33 per project
+  2. Maximize overlap: Prioritize projects {0,1,2,3,4,5}
+  3. Proportional fairness: Balance agent utilities
+
+Expected allocation might prioritize projects with multiple supporters
+to maximize total utility across agents.

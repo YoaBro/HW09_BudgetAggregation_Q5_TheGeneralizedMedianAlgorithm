@@ -1,0 +1,15 @@
+Why this is correct (proof sketch, English)
+	All potential median-changes happen only at the breakpoints we enumerated.
+A median changes only if the sorted order of the 2n-1values changes.
+The only order changes can occur when:
+	A phantom changes formula (unsaturated to saturated): t=1/k
+	A phantom equals a citizen vote (crossing): t=v/(Ck)
+	Between consecutive breakpoints, each subject’s median source is fixed.
+Inside an open interval tatbwith no events, no phantom crosses any citizen vote and no phantom changes saturation status. Therefore the relative order is fixed, so the n-th element (median) comes from the same “source” throughout the interval.
+	Therefore, on each interval, each subject median is either constant or linear, hence the sum is linear.
+	Citizen median → constant
+	Unsaturated phantom median → Ckt(linear)
+	Saturated phantom median → C(constant)
+So S(t)=A+Bton the interval.
+	Solving A+Bt=Cgives the unique correct solution on that interval (if it exists).
+We scan intervals until the computed solution falls inside; then we output the exact generalized-median budgets at that t^{\mathrm{\*}}.
